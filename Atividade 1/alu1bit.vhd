@@ -24,7 +24,7 @@ begin
 
 	somador_subtrator: fulladder port map(opa, opb, cin, soma, ovf);
 	
-	cout <= ovf when operation = "10" else '0';
+	cout <= ovf;
 	set <= soma;
 	overflow <= ovf;
 	result <= opa and opb when operation = "00" else
@@ -40,7 +40,7 @@ entity fulladder is
     s, cout: out bit
   );
  end entity;
- 
+
 architecture structural of fulladder is
   signal axorb: bit;
 begin

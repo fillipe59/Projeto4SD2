@@ -1,9 +1,9 @@
 v 4
+file . "alu1bit.vhd" "07bbcfb8d238050cb270156065fc8d55f9872531" "20211022021128.456":
+  entity alu1bit at 1( 0) + 0 on 31;
+  architecture arch of alu1bit at 10( 187) + 0 on 32;
+  entity fulladder at 37( 873) + 0 on 33;
+  architecture structural of fulladder at 52( 1151) + 1 on 35;
 file . "alu1bit_tb.vhd" "193cea65eb4fca6355d837e6337b1f3435ad59a3" "20211022013713.015":
   entity alu1bit_tb at 1( 0) + 0 on 29;
   architecture tb of alu1bit_tb at 4( 37) + 0 on 30;
-file . "alu1bit.vhd" "db4d333b7b3a570dc2f024485163b0dcc8670dae" "20211022013553.413":
-  entity alu1bit at 1( 0) + 0 on 23;
-  architecture arch of alu1bit at 10( 187) + 0 on 24;
-  entity fulladder at 37( 904) + 0 on 25;
-  architecture structural of fulladder at 44( 1004) + 0 on 26;

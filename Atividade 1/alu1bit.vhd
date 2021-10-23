@@ -9,7 +9,7 @@ end entity;
 
 architecture arch of alu1bit is
 	signal opa, opb: bit; --! operandos a partir de a e b
-	signal soma, ovf: bit; --! sinais intermediarios de soma e overflow
+	signal soma, carry: bit; --! sinais intermediarios de soma e overflow
 	
 	component fulladder is 
 		  port (
@@ -22,11 +22,11 @@ begin
 	opa <= a when ainvert = '0' else (not a);
 	opb <= b when binvert = '0' else (not b);
 
-	somador_subtrator: fulladder port map(opa, opb, cin, soma, ovf);
+	somador_subtrator: fulladder port map(opa, opb, cin, soma, carry);
 	
-	cout <= ovf;
+	cout <= carry;
 	set <= soma;
-	overflow <= ovf;
+	overflow <= cin xor carry;
 	result <= opa and opb when operation = "00" else
 			  opa or opb  when operation = "01" else
 			  soma        when operation = "10" else

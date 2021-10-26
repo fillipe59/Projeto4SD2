@@ -1,0 +1,8 @@
+v 4
+file . "alu.vhd" "f5f71c4eeb3f789271dc56edd74144a52da6e42d" "20211026214956.441":
+  entity alu at 1( 0) + 0 on 11;
+  architecture arch of alu at 18( 453) + 0 on 12;
+  entity alu1bit at 52( 1878) + 0 on 13;
+  architecture arch of alu1bit at 61( 2065) + 0 on 14;
+  entity fulladder at 88( 2767) + 0 on 15;
+  architecture structural of fulladder at 95( 2866) + 0 on 16;

@@ -27,8 +27,8 @@ architecture arch of alu is
 
     signal opa, opb: bit_vector(size-1 downto 0); -- operandos a partir de A e B
     signal res, Couts, sets, ovfls, Cins: bit_vector(size-1 downto 0); -- vetores que armazenam resultado, overflows, carry outs, sets e carry ins
-    signal menor: bit_vector(size-1 downto 0); -- sinal que indica se a eh menor que b 
-	--signal soma, carry: bit; -- sinais intermediarios de soma e overflow
+    signal res_final, menor: bit_vector(size-1 downto 0); -- resultado final e sinal que indica se a eh menor que b 
+
 begin
     Cins(0) <= '1' when S(2 downto 1) = "11" else '0';
     menor <= bit_vector(to_signed(1, size)) when signed(A) < signed(B) else bit_vector(to_signed(0, size));
@@ -41,9 +41,9 @@ begin
         ula1bit: alu1bit port map(A(i), B(i), '0', Cins(i), res(i), Couts(i), sets(i), ovfls(i), S(3), S(2), S(1 downto 0));
     end generate;
 
-    F <=  menor when S(1 downto 0) = "11" else res;
-    Z <= '1' when to_integer(signed(res)) = 0 and S(1 downto 0) /= "11" else 
-         menor(0) when S(1 downto 0) = "11";
+    res_final <= menor when S(1 downto 0) = "11" else res;
+    F <=  res_final;
+    Z <= '1' when to_integer(signed(res_final)) = 0  else '0';
     Ov <= ovfls(size-1);
     Co <= Couts(size-1);
 end arch;

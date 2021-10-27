@@ -1,6 +1,3 @@
-library ieee;
-use ieee.numeric_bit.all;
-
 entity alu is
     generic(
         size : natural := 10 --bit size
@@ -27,11 +24,12 @@ architecture arch of alu is
 
     signal opa, opb: bit_vector(size-1 downto 0); -- operandos a partir de A e B
     signal res, Couts, sets, ovfls, Cins: bit_vector(size-1 downto 0); -- vetores que armazenam resultado, overflows, carry outs, sets e carry ins
-    signal res_final, menor: bit_vector(size-1 downto 0); -- resultado final e sinal que indica se a eh menor que b 
+    signal menor: bit; -- sinal que indica se a eh menor que b
+    signal res_final: bit_vector(size-1 downto 0); -- resultado final
+    signal zero_vector: bit_vector(size-1 downto 0) := (others => '0'); -- vetor com zeros para comparacao
 
 begin
     Cins(0) <= '1' when S(2 downto 1) = "11" else '0';
-    menor <= bit_vector(to_signed(1, size)) when signed(A) < signed(B) else bit_vector(to_signed(0, size));
 
     Cins_att: for j in size-1 downto 1 generate
         Cins(j) <= Couts(j-1);
@@ -41,9 +39,12 @@ begin
         ula1bit: alu1bit port map(A(i), B(i), '0', Cins(i), res(i), Couts(i), sets(i), ovfls(i), S(3), S(2), S(1 downto 0));
     end generate;
 
-    res_final <= menor when S(1 downto 0) = "11" else res;
+    menor <= sets(size-1);
+
+    res_final <= res(size-1 downto 1) & menor when S(1 downto 0) = "11" else res;
+
     F <=  res_final;
-    Z <= '1' when to_integer(signed(res_final)) = 0  else '0';
+    Z <= '1' when res_final = zero_vector else '0';
     Ov <= ovfls(size-1);
     Co <= Couts(size-1);
 end arch;

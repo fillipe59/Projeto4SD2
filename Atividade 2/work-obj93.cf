@@ -2,10 +2,10 @@ v 4
 file . "tb2.vhd" "5f29eec4c96a82f65d22081c6ce9f9c4ff768c69" "20211026222243.045":
   entity testbench at 1( 0) + 0 on 31;
   architecture arch_tb of testbench at 8( 113) + 0 on 32;
-file . "alu.vhd" "d1a1b87060bbc6ad57f6cb6dda16eca10db2de70" "20211026222239.626":
-  entity alu at 1( 0) + 0 on 25;
-  architecture arch of alu at 18( 453) + 0 on 26;
-  entity alu1bit at 52( 1857) + 0 on 27;
-  architecture arch of alu1bit at 61( 2044) + 0 on 28;
-  entity fulladder at 88( 2746) + 0 on 29;
-  architecture structural of fulladder at 95( 2845) + 0 on 30;
+file . "alu.vhd" "cc8d30bb581f3fe9d1476f0eb6ef05b262a57061" "20211027104456.995":
+  entity alu at 1( 0) + 0 on 47;
+  architecture arch of alu at 15( 409) + 0 on 48;
+  entity alu1bit at 53( 1820) + 0 on 49;
+  architecture arch of alu1bit at 62( 2007) + 0 on 50;
+  entity fulladder at 89( 2709) + 0 on 51;
+  architecture structural of fulladder at 96( 2808) + 0 on 52;

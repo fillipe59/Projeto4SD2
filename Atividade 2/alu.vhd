@@ -22,15 +22,13 @@ architecture arch of alu is
         );       
     end component;
 
-    signal opa, opb: bit_vector(size-1 downto 0); -- operandos a partir de A e B
     signal res, Couts, sets, ovfls, Cins: bit_vector(size-1 downto 0); -- vetores que armazenam resultado, overflows, carry outs, sets e carry ins
     signal menor: bit; -- sinal que indica se a eh menor que b
     signal res_final: bit_vector(size-1 downto 0); -- resultado final
     signal zero_vector: bit_vector(size-1 downto 0) := (others => '0'); -- vetor com zeros para comparacao
 
 begin
-    Cins(0) <= '1' when S(2 downto 1) = "11" else '0';
-
+    Cins(0) <= '1' when S(2) = '1' else '0';
     Cins_att: for j in size-1 downto 1 generate
         Cins(j) <= Couts(j-1);
     end generate;
@@ -40,7 +38,6 @@ begin
     end generate;
 
     menor <= sets(size-1);
-
     res_final <= res(size-1 downto 1) & menor when S(1 downto 0) = "11" else res;
 
     F <=  res_final;

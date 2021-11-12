@@ -28,7 +28,7 @@ architecture arch of alu is
     signal zero_vector: bit_vector(size-1 downto 0) := (others => '0'); -- vetor com zeros para comparacao
 
 begin
-    Cins(0) <= '1' when S(2) = '1' else '0';
+    Cins(0) <= S(2);
     Cins_att: for j in size-1 downto 1 generate
         Cins(j) <= Couts(j-1);
     end generate;
